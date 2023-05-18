@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+    <script type="text/javascript">
+        let map, korps;
+
+        korps = [
+            [53.209034, 50.125048, "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/glav1.jpg",
+            "Главный корпус СамГТУ",
+            "Молодогвардейская улица, 244"],
+            [53.209818, 50.124304, "https://avatars.mds.yandex.net/get-altay/1348156/2a00000166c9b0fdfdd673db0aad1db00979/XXXL",
+            "1 корпус СамГТУ",
+            "Первомайская улица, 18"],
+            [53.196117, 50.094880, "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k2.jpg",
+            "2 корпус СамГТУ",
+            "Куйбышева, 153",],
+            [53.199131, 50.105008, "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k3m.jpg",
+            "3 корпус СамГТУ",
+            "Молодогвардейская 133"],
+            [53.198420, 50.108336,
+            "https://avatars.mds.yandex.net/get-altay/7631548/2a00000184263589c670a8069aea319b9562/XXL_height",
+            "4 корпус СамГТУ",
+            "Самарская улица, 170",],
+            [53.197830, 50.105116,
+            "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k5.jpg",
+            "5 корпус СамГТУ",
+            "Вилоновская 22а",],
+            [53.196435, 50.105903,
+            "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k6.jpg",
+            "6 корпус СамГТУ",
+            "Галактионовская, 141"],
+            [53.208981, 50.122107,
+                "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k77.jpg",
+                "7 корпус СамГТУ",
+                "Первомайская, 1"],
+            [53.209356, 50.125867,
+                "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k8.jpg",
+                "8 корпус СамГТУ",
+                "Молодогвардейская, 244"],
+            [53.207624, 50.128622,
+                "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k9.jpg",
+                "9 корпус СамГТУ",
+                "Ново-Садовая, 10"],
+            [53.208607, 50.128045,
+                "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k10.jpg",
+                "10 корпус СамГТУ",
+                "Циолковского, 1"],
+            [53.214787, 50.169867,
+                "http://studentlife.samgtu.ru/sites/studentlife.samgtu.ru/files/k11.jpg",
+                "11 корпус СамГТУ",
+                "Лукачева, 29"],
+            [53.200491, 50.103729,
+                "https://avatars.mds.yandex.net/get-altay/1371862/2a000001656939abddf39ba20a6ae321ae06/XXXL",
+                "12 корпус СамГТУ",
+                "Чапаевская улица, 223"],
+            [53.201415, 50.105457,
+                "https://core-pht-proxy.maps.yandex.ru/v1/photos/download?photo_id=Qp9Z97gsI2rWy9HYgR3h6Q&image_size=XXL",
+                "13 корпус СамГТУ",
+                "Чапаевская улица, 225"],
+            [53.208310, 50.130006,
+                "https://avatars.mds.yandex.net/get-altay/5099256/2a0000018142ee9be8aad0501d473a53332b/XXXL",
+                "14 корпус СамГТУ",
+                "Ново-Садовая, 14"],
+    ]
+        DG.then(function () {
+            let myIcon;
+            let marker;
+            map = DG.map('map', {
+                center: [53.209756, 50.124466],
+                zoom: 15
+            });
+
+            for (var i = 0; i <= 14; i++) {
+                myIcon = DG.icon({
+                    iconUrl: korps[i][2],
+                    iconSize: [48, 48]
+                });
+                marker = DG.marker([korps[i][0], korps[i][1]], {icon: myIcon});
+                marker.addTo(map).bindPopup('');
+                marker.bindPopup(korps[i][3] + '<br>' + korps[i][4]);
+                marker.bindLabel(korps[i][3]);
+                marker.on('click', function (e) {
+                    map.setView([e.lating.lat, e.lating.lng]);
+                });
+            }
+        });
+
+    </script>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;}
+        #map{
+            width: 50%;
+            height: 50%;
+            margin: 25%;
+            margin-top: 12.5%
+}
+    </style>
+</head>
+<body>
+    <div id="map" style="width: 98%; height: 98%; margin: 10px"></div>
+</body>
+</html>
